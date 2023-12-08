@@ -15,7 +15,7 @@ const MAX_VARIANT_GRAMS float64 = 50000
 const INVENTORY_MIN int = 0
 const INVENTORY_MAX int = 1000000000
 const SALE_CHANCE float64 = 0.3
-const SALE_AMOUNT float64 = 0.5
+const SALE_AMOUNT float64 = 1.5
 const COST_PER_ITEM float64 = 0.4
 
 var VARIANT_FULLFILMENT_SERVICES []string = []string{"manual", "manual", "manual"}
