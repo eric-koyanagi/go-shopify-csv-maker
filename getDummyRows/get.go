@@ -19,6 +19,7 @@ const SALE_AMOUNT float64 = 0.5
 const COST_PER_ITEM float64 = 0.4
 
 var VARIANT_FULLFILMENT_SERVICES []string = []string{"manual", "manual", "manual"}
+var INVENTORY_POLICIES []string = []string{"deny", "deny", "continue"}
 
 var Headers = []string{
 	"Handle",
@@ -99,7 +100,7 @@ func NewRow(handle string) map[string]string {
 		row["Variant Compare At Price"] = strconv.FormatFloat(price*SALE_AMOUNT, 'f', 2, 64)
 	}
 	row["Variant Inventory Qty"] = strconv.Itoa(gofakeit.IntRange(INVENTORY_MIN, INVENTORY_MAX))
-	row["Variant Inventory Policy"] = gofakeit.RandomString([]string{"deny", "deny", "continue"})
+	row["Variant Inventory Policy"] = gofakeit.RandomString(INVENTORY_POLICIES)
 	row["Variant Fulfillment Service"] = gofakeit.RandomString(VARIANT_FULLFILMENT_SERVICES)
 	row["Variant Barcode"] = gofakeit.ProductUPC()
 	row["Image Src"] = gofakeit.ImageURL(IMAGE_WIDTH, IMAGE_HEIGHT)
