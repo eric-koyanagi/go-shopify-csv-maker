@@ -6,20 +6,6 @@ import (
 	"github.com/brianvoe/gofakeit/v6"
 )
 
-/*
-type Product struct {
-	Title       string   `faker:"sentence"`
-	Handle      string   `faker:"slug"`
-	BodyHTML    string   `faker:"paragraph"`
-	Vendor      string   `faker:"company"`
-	Type        string   `faker:"word"`
-	Tags        []string `faker:"word"`
-	PublishedAt string   `faker:"date"`
-}
-
-var p Product
-*/
-
 const MIN_PRICE float64 = 0.5
 const MAX_PRICE float64 = 5000
 const IMAGE_WIDTH int = 500
@@ -32,7 +18,7 @@ const SALE_CHANCE float64 = 0.3
 const SALE_AMOUNT float64 = 0.5
 const COST_PER_ITEM float64 = 0.4
 
-var VARIANT_FULLFILMENT_SERVICES []string = []string{"manual", "manual", "amazon_marketplace_web"}
+var VARIANT_FULLFILMENT_SERVICES []string = []string{"manual", "manual", "manual"}
 
 var Headers = []string{
 	"Handle",
@@ -113,7 +99,7 @@ func NewRow(handle string) map[string]string {
 		row["Variant Compare At Price"] = strconv.FormatFloat(price*SALE_AMOUNT, 'f', 2, 64)
 	}
 	row["Variant Inventory Qty"] = strconv.Itoa(gofakeit.IntRange(INVENTORY_MIN, INVENTORY_MAX))
-	row["Variant Inventory Policy"] = gofakeit.RandomString([]string{"deny", "deny", "allow"})
+	row["Variant Inventory Policy"] = gofakeit.RandomString([]string{"deny", "deny", "continue"})
 	row["Variant Fulfillment Service"] = gofakeit.RandomString(VARIANT_FULLFILMENT_SERVICES)
 	row["Variant Barcode"] = gofakeit.ProductUPC()
 	row["Image Src"] = gofakeit.ImageURL(IMAGE_WIDTH, IMAGE_HEIGHT)
